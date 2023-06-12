@@ -55,7 +55,10 @@ public class UI {
             for (int y = 0; y < logic.getMapHeight(); y++) {
                 Cell cell = logic.getCell(x, y);
 
+
+
                 if (cell.getActor() != null ) {
+
                     Tiles.drawTile(context, cell.getActor(), x, y);
                 } else {
                     Tiles.drawTile(context, cell, x, y);
