@@ -11,7 +11,7 @@ public abstract class Actor implements Drawable {
         this.health = health;
     }
 
-    public void setSword(int sword) {
+    public void setSword(int sword) {a
         this.sword = sword;
     }
 
@@ -35,6 +35,7 @@ public abstract class Actor implements Drawable {
         skeletonCheck(nextCell);
         wallCheck(nextCell);
 
+
     }
 
     private boolean skeletonCheck(Cell nextCell) {
@@ -55,14 +56,15 @@ public abstract class Actor implements Drawable {
         }
 
 
-       /* if (nextCell.getActor().toString().contains("Skeleton")){
-            System.out.println("kiscica");
-        }*/
+      
         return new Skeleton(nextCell);
     }
 
+    
+
     private void wallCheck(Cell nextCell) {
-        if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE) {
+        if (nextCell.getType() != CellType.WALL && nextCell.getActor()==null  && nextCell.getType() !=CellType.GATE){
+
             collectIventory(nextCell);
 
             cell.setActor(null);
@@ -72,6 +74,7 @@ public abstract class Actor implements Drawable {
     }
 
     private void collectIventory(Cell nextCell) {
+
         if (nextCell.getType().equals(CellType.SWORD) || nextCell.getType().equals(CellType.KEY)) {
             System.out.println(nextCell.getType());
 
@@ -80,6 +83,7 @@ public abstract class Actor implements Drawable {
                 sword++;
             }
             if (nextCell.getType().equals(CellType.KEY)) {
+
                 key++;
             }
 
