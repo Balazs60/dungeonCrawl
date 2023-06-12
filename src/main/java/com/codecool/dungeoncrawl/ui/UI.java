@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
+import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
 import com.codecool.dungeoncrawl.ui.keyeventhandler.KeyHandler;
@@ -21,7 +22,7 @@ public class UI {
     private MainStage mainStage;
     private GameLogic logic;
     private Set<KeyHandler> keyHandlers;
-
+//private Skeleton skeleton = new Skeleton();
 
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
         this.canvas = new Canvas(
@@ -36,7 +37,7 @@ public class UI {
     public void setUpPain(Stage primaryStage) {
         Scene scene = mainStage.getScene();
         primaryStage.setScene(scene);
-        logic.setup();
+//        logic.setup();
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
     }
