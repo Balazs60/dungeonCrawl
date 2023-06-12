@@ -20,34 +20,41 @@ public abstract class Actor implements Drawable {
         Cell nextCell = cell.getNeighbor(dx, dy);
 
 
+        wallCheck(nextCell);
 
+    }
+
+    private void wallCheck(Cell nextCell) {
         if (nextCell.getType() != CellType.WALL && nextCell.getActor()==null  && nextCell.getType() !=CellType.GATE){
-            if (nextCell.getType().equals(CellType.SWORD)  || nextCell.getType().equals(CellType.KEY)){
-                System.out.println(nextCell.getType());
+            collectIventory(nextCell);
 
-                cell.setType(CellType.FLOOR);
-                if(nextCell.getType().equals(CellType.SWORD)){
-                    sword++;
-                }
-                if(nextCell.getType().equals(CellType.KEY)){
-                    key++;
-                }
-
-                cell.setActor(null);
-                System.out.println(cell.getType());
-                nextCell.setActor(this);
-                cell = nextCell;
-                System.out.println(cell.getType());
-                cell.setType(CellType.FLOOR);
-                //commit miatt
-
-            }
-           // System.out.println(nextCell.getType());
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
         }
+    }
 
+    private void collectIventory(Cell nextCell) {
+        if (nextCell.getType().equals(CellType.SWORD)  || nextCell.getType().equals(CellType.KEY)){
+            System.out.println(nextCell.getType());
+
+            cell.setType(CellType.FLOOR);
+            if(nextCell.getType().equals(CellType.SWORD)){
+                sword++;
+            }
+            if(nextCell.getType().equals(CellType.KEY)){
+                key++;
+            }
+
+            cell.setActor(null);
+            System.out.println(cell.getType());
+            nextCell.setActor(this);
+            cell = nextCell;
+            System.out.println(cell.getType());
+            cell.setType(CellType.FLOOR);
+            //commit miatt
+
+        }
     }
 
     public int getHealth() {
