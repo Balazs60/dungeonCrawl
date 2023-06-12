@@ -7,6 +7,8 @@ import com.codecool.dungeoncrawl.data.Drawable;
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
+    private  int sword = 0;
+    private int key = 0;
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -22,7 +24,14 @@ public abstract class Actor implements Drawable {
         if (nextCell.getType() != CellType.WALL && nextCell.getActor()==null  && nextCell.getType() !=CellType.GATE){
             if (nextCell.getType().equals(CellType.SWORD)  || nextCell.getType().equals(CellType.KEY)){
                 System.out.println(nextCell.getType());
+
                 cell.setType(CellType.FLOOR);
+                if(nextCell.getType().equals(CellType.SWORD)){
+                    sword++;
+                }
+                if(nextCell.getType().equals(CellType.KEY)){
+                    key++;
+                }
 
                 cell.setActor(null);
                 System.out.println(cell.getType());
@@ -43,6 +52,14 @@ public abstract class Actor implements Drawable {
 
     public int getHealth() {
         return health;
+    }
+
+    public int getSword() {
+        return sword;
+    }
+
+    public int getKey() {
+        return key;
     }
 
     public Cell getCell() {

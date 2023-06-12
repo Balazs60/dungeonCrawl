@@ -66,5 +66,7 @@ public class UI {
             }
         }
         mainStage.setHealthLabelText(logic.getPlayerHealth());
+        mainStage.setSwordLabelText(logic.getPlayerSword());
+        mainStage.setKeyLabelText(logic.getPlayerKey());
     }
 }
