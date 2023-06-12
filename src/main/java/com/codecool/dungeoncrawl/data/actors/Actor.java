@@ -30,6 +30,7 @@ public abstract class Actor implements Drawable {
                 cell = nextCell;
                 System.out.println(cell.getType());
                 cell.setType(CellType.FLOOR);
+                //commit miatt
 
             }
            // System.out.println(nextCell.getType());
