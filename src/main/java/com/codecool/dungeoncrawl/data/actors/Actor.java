@@ -7,19 +7,19 @@ import com.codecool.dungeoncrawl.data.Drawable;
 public abstract class Actor implements Drawable {
     private Cell cell;
 
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
     Player player;
 
-    private int health = 10;
+    protected int health;
+    protected int attack;
     private int sword = 0;
     private int key = 0;
-public Skeleton skeleton;
-    public Actor(Cell cell) {
+    public Skeleton skeleton;
+
+    public Actor(Cell cell, int health, int attack) {
         this.cell = cell;
         this.cell.setActor(this);
+        this.health = health;
+        this.attack = attack;
     }
 
     public void move(int dx, int dy) {
@@ -29,53 +29,50 @@ public Skeleton skeleton;
         checkSkeleton(nextCell);
 
 
-
-
-
     }
 
-    private void attack(int enemyHp , int enemyAtk ,int playerHealth ,int playerAtk, Cell nextCell) {
-        while (playerHealth>=0 || enemyHp >=0){
-            enemyHp-=playerAtk;
+    private void attack(Cell cell, Cell nextCell) {
+        int enemyHp = nextCell.getActor().getHealth();
+        int enemyAttack = nextCell.getActor().getAttack();
+        int playerHp = cell.getActor().getHealth();
+        int playerAttack = cell.getActor().getAttack();
 
 
-               playerHealth-=enemyAtk;
-
-
-
+        while (health >= 0 || nextCell.getActor().getHealth() >= 0) {
+            nextCell.getActor().setHealth(nextCell.getActor().getHealth() - attack);
+            System.out.println("enemy hp " + nextCell.getActor().getHealth());
+            System.out.println("enemy attack " + nextCell.getActor().getAttack());
+            cell.getActor().setHealth(cell.getActor().getHealth() - nextCell.getActor().getAttack());
+            System.out.println("my hp " + health);
+            if (nextCell.getActor().getHealth() <= 0) {
+                nextCell.setActor(null);
+                break;
+            }
         }
-        nextCell.setActor(null);
-
-
-
-
     }
 
 
     private void checkSkeleton(Cell nextCell) {
         String skeletoncheck = nextCell.getActor().toString();
         if (skeletoncheck.contains("Skeleton")) {
-            int enemyHp=10;
+            int enemyHp = nextCell.getActor().getHealth();
             System.out.println(enemyHp);
-            int enemyAtk=2;
+            int enemyAtk = nextCell.getActor().getAttack();
             System.out.println(enemyAtk);
-            int playerHp=10;
-            int playerAtk= sword>0?7:5;
+            int playerHp = cell.getActor().getHealth();
+            int playerAtk = sword > 0 ? cell.getActor().getAttack() + 2 : cell.getActor().getAttack();
 
 
-            attack(enemyHp,enemyAtk,playerHp, playerAtk ,nextCell);
-             nextCell.setActor(null);
+            attack(cell, nextCell);
+            nextCell.setActor(null);
         }
 
 
-      
-
     }
 
-    
 
     private void wallCheck(Cell nextCell) {
-        if (nextCell.getType() != CellType.WALL && nextCell.getActor()==null  && nextCell.getType() !=CellType.GATE){
+        if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE) {
 
             collectIventory(nextCell);
 
@@ -110,9 +107,6 @@ public Skeleton skeleton;
         }
     }
 
-    public int getHealth() {
-        return health;
-    }
 
     public int getSword() {
         return sword;
@@ -133,4 +127,19 @@ public Skeleton skeleton;
     public int getY() {
         return cell.getY();
     }
+    public int getHealth(){
+        return health;
+    };
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
 }
