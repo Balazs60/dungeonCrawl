@@ -32,18 +32,20 @@ public abstract class Actor implements Drawable {
     }
 
     private void attack(Cell cell, Cell nextCell) {
-        int enemyHp = nextCell.getActor().getHealth();
-        int enemyAttack = nextCell.getActor().getAttack();
-        int playerHp = cell.getActor().getHealth();
-        int playerAttack = cell.getActor().getAttack();
+
 
 
         while (health >= 0 || nextCell.getActor().getHealth() >= 0) {
             nextCell.getActor().setHealth(nextCell.getActor().getHealth() - attack);
             System.out.println("enemy hp " + nextCell.getActor().getHealth());
             System.out.println("enemy attack " + nextCell.getActor().getAttack());
+            if (health<= 0) {
+                cell.setActor(null);
+                break;
+            }
             cell.getActor().setHealth(cell.getActor().getHealth() - nextCell.getActor().getAttack());
             System.out.println("my hp " + health);
+
             if (nextCell.getActor().getHealth() <= 0) {
                 nextCell.setActor(null);
                 break;
