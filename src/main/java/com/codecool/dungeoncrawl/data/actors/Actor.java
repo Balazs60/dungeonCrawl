@@ -24,9 +24,14 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
 
-        Cell nextCell = cell.getNeighbor(dx, dy);
-        wallCheck(nextCell);
-        checkSkeleton(nextCell);
+        if (cell.getActor()!=null){
+            Cell nextCell = cell.getNeighbor(dx, dy);
+            setGate(nextCell);
+            wallCheck(nextCell);
+            checkSkeleton(nextCell);
+
+
+        }
 
 
     }
@@ -55,21 +60,22 @@ public abstract class Actor implements Drawable {
 
 
     private void checkSkeleton(Cell nextCell) {
-        String skeletoncheck = nextCell.getActor().toString();
-        if (skeletoncheck.contains("Skeleton")) {
-            int enemyHp = nextCell.getActor().getHealth();
-            System.out.println(enemyHp);
-            int enemyAtk = nextCell.getActor().getAttack();
-            System.out.println(enemyAtk);
-            int playerHp = cell.getActor().getHealth();
-            int playerAtk = sword > 0 ? cell.getActor().getAttack() + 2 : cell.getActor().getAttack();
+        if (nextCell.getActor()!=null) {
+            String skeletoncheck = nextCell.getActor().toString();
 
+            if (skeletoncheck.contains("Skeleton")) {
 
-            attack(cell, nextCell);
-            nextCell.setActor(null);
+                attack(cell, nextCell);
+                nextCell.setActor(null);
+            }
         }
 
+    }
+    private void setGate(Cell nextCell){
+        if (nextCell.getType().equals(CellType.GATE) && key>0){
+            nextCell.setType(CellType.OPENGATE);
 
+        }
     }
 
 
