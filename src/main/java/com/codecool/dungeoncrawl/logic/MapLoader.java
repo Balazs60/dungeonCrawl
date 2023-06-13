@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
+import com.codecool.dungeoncrawl.data.actors.Devil;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 
@@ -40,6 +41,10 @@ public class MapLoader {
 
                         case 'g':
                             cell.setType(CellType.GATE);
+                            break;
+                        case 'd':
+                            cell.setType(CellType.DEVIL);
+                            new Devil(cell);
                             break;
                         case 'o':
                             cell.setType(CellType.OPENGATE);

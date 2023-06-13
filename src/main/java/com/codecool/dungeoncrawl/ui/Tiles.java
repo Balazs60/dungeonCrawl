@@ -32,6 +32,7 @@ public class Tiles {
         tileMap.put("sword" , new Tile(1,30));
         tileMap.put("key" , new Tile(16,23));
         tileMap.put("opengate" , new Tile(4,4));
+        tileMap.put("devil" , new Tile(31,2));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {

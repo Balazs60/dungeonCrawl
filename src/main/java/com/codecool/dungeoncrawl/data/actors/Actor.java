@@ -24,11 +24,13 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
 
-        if (cell.getActor()!=null){
+
+        if (isAlive()){
             Cell nextCell = cell.getNeighbor(dx, dy);
+            System.out.println(nextCell.getActor());
             setGate(nextCell);
             wallCheck(nextCell);
-            checkSkeleton(nextCell);
+            checkMonster(nextCell);
 
 
         }
@@ -36,7 +38,11 @@ public abstract class Actor implements Drawable {
 
     }
 
-    private void attack(Cell cell, Cell nextCell) {
+    private boolean isAlive() {
+        return health > 0;
+    }
+
+    private void attack( Cell nextCell) {
 
 
 
@@ -59,13 +65,13 @@ public abstract class Actor implements Drawable {
     }
 
 
-    private void checkSkeleton(Cell nextCell) {
+    private void checkMonster(Cell nextCell) {
         if (nextCell.getActor()!=null) {
-            String skeletoncheck = nextCell.getActor().toString();
+            String monsterheck = nextCell.getActor().toString();
 
-            if (skeletoncheck.contains("Skeleton")) {
+            if (monsterheck.contains("Skeleton") || monsterheck.contains("Devil")) {
 
-                attack(cell, nextCell);
+                attack( nextCell);
                 nextCell.setActor(null);
             }
         }
