@@ -22,7 +22,6 @@ public class UI {
     private MainStage mainStage;
     private GameLogic logic;
     private Set<KeyHandler> keyHandlers;
-//private Skeleton skeleton = new Skeleton();
 
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
         this.canvas = new Canvas(
@@ -37,7 +36,7 @@ public class UI {
     public void setUpPain(Stage primaryStage) {
         Scene scene = mainStage.getScene();
         primaryStage.setScene(scene);
-//        logic.setup();
+        logic.setup();
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
     }

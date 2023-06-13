@@ -21,21 +21,8 @@ public class GameLogic {
         return map.getHeight();
     }
 
-    public String setup(Skeleton skeleton, Actor actor) {
-        while (actor.getHealth() >= 0 || skeleton.getHealth() >= 0) {
-            int skeletonHealth = skeleton.getHealth();
-            skeleton.health = skeleton.health -5;
-            int playerHealth = actor.getHealth();
-            actor.setHealth(-2);
-        }
-        String winner;
-        if (actor.getHealth() > skeleton.getHealth()) {
-            winner = "Player won!";
-        } else {
-            winner = "Skeleton won!";
+    public void setup() {
 
-        }
-        return winner;
     }
 
     public Cell getCell(int x, int y) {

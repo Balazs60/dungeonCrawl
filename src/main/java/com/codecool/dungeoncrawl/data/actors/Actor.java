@@ -7,22 +7,16 @@ import com.codecool.dungeoncrawl.data.Drawable;
 public abstract class Actor implements Drawable {
     private Cell cell;
 
+
     public void setHealth(int health) {
         this.health = health;
     }
-
-    public void setSword(int sword) {a
-        this.sword = sword;
-    }
-
-    public void setKey(int key) {
-        this.key = key;
-    }
+    Player player;
 
     private int health = 10;
     private int sword = 0;
     private int key = 0;
-
+public Skeleton skeleton;
     public Actor(Cell cell) {
         this.cell = cell;
         this.cell.setActor(this);
@@ -31,33 +25,51 @@ public abstract class Actor implements Drawable {
     public void move(int dx, int dy) {
 
         Cell nextCell = cell.getNeighbor(dx, dy);
-
-        skeletonCheck(nextCell);
         wallCheck(nextCell);
+        checkSkeleton(nextCell);
+
+
+
 
 
     }
 
-    private boolean skeletonCheck(Cell nextCell) {
-        if (nextCell.getActor() != null) {
-            skeletonCoordinates(nextCell);
-            return true;
+    private void attack(int enemyHp , int enemyAtk ,int playerHealth ,int playerAtk, Cell nextCell) {
+        while (playerHealth>=0 || enemyHp >=0){
+            enemyHp-=playerAtk;
+
+
+               playerHealth-=enemyAtk;
+
+
+
         }
-       return  false;
+        nextCell.setActor(null);
+
+
+
+
     }
 
-    private Skeleton skeletonCoordinates(Cell nextCell) {
 
-        int x = nextCell.getActor().getX();
-        int y = nextCell.getActor().getY();
+    private void checkSkeleton(Cell nextCell) {
         String skeletoncheck = nextCell.getActor().toString();
         if (skeletoncheck.contains("Skeleton")) {
+            int enemyHp=10;
+            System.out.println(enemyHp);
+            int enemyAtk=2;
+            System.out.println(enemyAtk);
+            int playerHp=10;
+            int playerAtk= sword>0?7:5;
 
+
+            attack(enemyHp,enemyAtk,playerHp, playerAtk ,nextCell);
+             nextCell.setActor(null);
         }
 
 
       
-        return new Skeleton(nextCell);
+
     }
 
     
@@ -93,7 +105,7 @@ public abstract class Actor implements Drawable {
             cell = nextCell;
             System.out.println(cell.getType());
             cell.setType(CellType.FLOOR);
-            //commit miatt
+
 
         }
     }

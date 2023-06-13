@@ -5,8 +5,27 @@ import com.codecool.dungeoncrawl.data.Cell;
 import java.util.Random;
 
 public class Skeleton extends Actor {
-    Random random = new Random();
+
+
+    @Override
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public int health = 10;
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
     public int attack = 2;
 
     public Skeleton(Cell cell) {

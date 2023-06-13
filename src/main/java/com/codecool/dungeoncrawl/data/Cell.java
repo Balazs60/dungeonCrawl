@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.actors.Actor;
+import com.codecool.dungeoncrawl.data.actors.Skeleton;
 
 public class Cell implements Drawable {
     private CellType type;
@@ -23,8 +24,9 @@ public class Cell implements Drawable {
         this.type = type;
     }
 
-    public void setActor(Actor actor) {
+    public Skeleton setActor(Actor actor) {
         this.actor = actor;
+        return null;
     }
 
     public Actor getActor() {
