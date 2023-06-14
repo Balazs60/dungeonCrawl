@@ -13,6 +13,7 @@ public abstract class Actor implements Drawable {
     protected int attack;
     private int sword = 0;
     private int key = 0;
+    private int potion = 0;
     public Skeleton skeleton;
 
 
@@ -93,7 +94,11 @@ public abstract class Actor implements Drawable {
 
 
     protected void wallCheck(Cell nextCell) {
-        if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE) {
+        if(potion > 0){
+            cell.setActor(null);
+            nextCell.setActor(this);
+            cell = nextCell;
+        } else if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE) {
 
             collectIventory(nextCell);
             pickUpHealth(nextCell);
@@ -107,7 +112,7 @@ public abstract class Actor implements Drawable {
 
     private void collectIventory(Cell nextCell) {
 
-        if (nextCell.getType().equals(CellType.SWORD) || nextCell.getType().equals(CellType.KEY)) {
+        if (nextCell.getType().equals(CellType.SWORD) || nextCell.getType().equals(CellType.KEY) || nextCell.getType().equals(CellType.POTION)) {
             System.out.println(nextCell.getType());
 
             cell.setType(CellType.FLOOR);
@@ -117,6 +122,10 @@ public abstract class Actor implements Drawable {
             if (nextCell.getType().equals(CellType.KEY)) {
 
                 key++;
+            }
+            if (nextCell.getType().equals(CellType.POTION)) {
+
+                potion++;
             }
 
             cell.setActor(null);
@@ -150,6 +159,9 @@ public abstract class Actor implements Drawable {
 
     public int getKey() {
         return key;
+    }
+    public int getPotion() {
+        return potion;
     }
 
     public Cell getCell() {

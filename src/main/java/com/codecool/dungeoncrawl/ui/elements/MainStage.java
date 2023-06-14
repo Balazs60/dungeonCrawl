@@ -35,4 +35,7 @@ public class MainStage {
     public void setKeyLabelText(String text){
         this.statusPane.setKeyValue(text);
     }
+    public void setPotionLabelText(String text){
+        this.statusPane.setPotionValue(text);
+    }
 }
