@@ -38,4 +38,7 @@ public class MainStage {
     public void setPotionLabelText(String text){
         this.statusPane.setPotionValue(text);
     }
+    public void setTresureLabelText(String text){
+        this.statusPane.setTresureValue(text);
+    }
 }

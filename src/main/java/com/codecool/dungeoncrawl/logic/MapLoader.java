@@ -52,6 +52,9 @@ public class MapLoader {
                         case 'p':
                             cell.setType(CellType.POTION);
                             break;
+                        case 'n':
+                            cell.setType(CellType.NOPOTION);
+                            break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
                             new Devil(cell);
@@ -62,6 +65,9 @@ public class MapLoader {
                             break;
                         case 'o':
                             cell.setType(CellType.OPENGATE);
+                            break;
+                        case 'c':
+                            cell.setType(CellType.Bridge);
                             break;
                         case 'q':
                             cell.setType(CellType.SKULL);

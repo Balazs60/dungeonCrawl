@@ -14,8 +14,9 @@ public abstract class Actor implements Drawable {
     private int sword = 0;
     private int key = 0;
     private int potion = 0;
+    private int tresure = 0;
     public Skeleton skeleton;
-
+    private boolean bossIsAlive = true;
 
 
     public Actor(Cell cell, int health, int attack) {
@@ -29,16 +30,13 @@ public abstract class Actor implements Drawable {
     public void move(int dx, int dy) {
 
 
-
-        if (isAlive()){
+        if (isAlive()) {
             Cell nextCell = cell.getNeighbor(dx, dy);
-           // System.out.println(nextCell.getActor());
+            // System.out.println(nextCell.getActor());
             setGate(nextCell);
             wallCheck(nextCell);
+            setBridge(nextCell);
             checkMonster(nextCell);
-
-
-
 
 
         }
@@ -50,15 +48,14 @@ public abstract class Actor implements Drawable {
         return health > 0;
     }
 
-    private void attack( Cell nextCell) {
-
+    private void attack(Cell nextCell) {
 
 
         while (health >= 0 || nextCell.getActor().getHealth() >= 0) {
             nextCell.getActor().setHealth(nextCell.getActor().getHealth() - attack);
             System.out.println("enemy hp " + nextCell.getActor().getHealth());
             System.out.println("enemy attack " + nextCell.getActor().getAttack());
-            if (health<= 0) {
+            if (health <= 0) {
                 cell.setActor(null);
                 break;
             }
@@ -74,31 +71,55 @@ public abstract class Actor implements Drawable {
 
 
     private void checkMonster(Cell nextCell) {
-        if (nextCell.getActor()!=null) {
+        if (nextCell.getActor() != null) {
             String monsterheck = nextCell.getActor().toString();
 
-            if (monsterheck.contains("Skeleton") || monsterheck.contains("Devil") || monsterheck.contains("Boss")) {
+            if (monsterheck.contains("Boss")) {
+                attack(nextCell);
+                nextCell.setActor(null);
+                bossIsAlive = false;
+                System.out.println(bossIsAlive);
+            }
 
-                attack( nextCell);
+            if (monsterheck.contains("Skeleton") || monsterheck.contains("Devil")) {
+
+                attack(nextCell);
                 nextCell.setActor(null);
             }
         }
 
     }
-    private void setGate(Cell nextCell){
-        if (nextCell.getType().equals(CellType.GATE) && key>0){
+
+    private void setGate(Cell nextCell) {
+        if (nextCell.getType().equals(CellType.GATE) && key > 0) {
             nextCell.setType(CellType.OPENGATE);
 
         }
     }
 
+    private void setBridge(Cell nextCell) {
+        if (nextCell.getType().equals(CellType.WATER) && bossIsAlive == false) {
+            nextCell.setType(CellType.Bridge);
+        }
+    }
+
 
     protected void wallCheck(Cell nextCell) {
-        if(potion > 0){
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
-        } else if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE) {
+        if (potion > 0) {
+
+            {
+                if(nextCell.getType().equals(CellType.NOPOTION)){
+                    potion--;
+                    nextCell.setType(CellType.FLOOR);
+                }
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            }
+
+
+        } else if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE &&
+                nextCell.getType() != CellType.WATER) {
 
             collectIventory(nextCell);
             pickUpHealth(nextCell);
@@ -112,7 +133,8 @@ public abstract class Actor implements Drawable {
 
     private void collectIventory(Cell nextCell) {
 
-        if (nextCell.getType().equals(CellType.SWORD) || nextCell.getType().equals(CellType.KEY) || nextCell.getType().equals(CellType.POTION)) {
+        if (nextCell.getType().equals(CellType.SWORD) || nextCell.getType().equals(CellType.KEY) ||
+                nextCell.getType().equals(CellType.POTION) || nextCell.getType().equals(CellType.TRESURE)) {
             System.out.println(nextCell.getType());
 
             cell.setType(CellType.FLOOR);
@@ -122,10 +144,14 @@ public abstract class Actor implements Drawable {
             if (nextCell.getType().equals(CellType.KEY)) {
 
                 key++;
+
             }
             if (nextCell.getType().equals(CellType.POTION)) {
 
                 potion++;
+            }
+            if (nextCell.getType().equals(CellType.TRESURE)) {
+                tresure++;
             }
 
             cell.setActor(null);
@@ -139,10 +165,10 @@ public abstract class Actor implements Drawable {
         }
     }
 
-    private void pickUpHealth(Cell nextCell){
-        if(nextCell.getType().equals(CellType.Health)){
+    private void pickUpHealth(Cell nextCell) {
+        if (nextCell.getType().equals(CellType.Health)) {
             cell.setType(CellType.FLOOR);
-            health+= 35;
+            health += 35;
             cell.setActor(null);
             System.out.println(cell.getType());
             nextCell.setActor(this);
@@ -160,6 +186,11 @@ public abstract class Actor implements Drawable {
     public int getKey() {
         return key;
     }
+
+    public int getTresure() {
+        return tresure;
+    }
+
     public int getPotion() {
         return potion;
     }
@@ -175,13 +206,17 @@ public abstract class Actor implements Drawable {
     public int getY() {
         return cell.getY();
     }
-    public int getHealth(){
+
+    public int getHealth() {
         return health;
-    };
+    }
+
+    ;
 
     public void setHealth(int health) {
         this.health = health;
     }
+
     public int getAttack() {
         return attack;
     }

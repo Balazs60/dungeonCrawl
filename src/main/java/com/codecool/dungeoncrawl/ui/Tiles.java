@@ -12,8 +12,10 @@ public class Tiles {
 
     private static Image tileset = new Image("/tiles.png", 543 * 2, 543 * 2, true, false);
     private static Map<String, Tile> tileMap = new HashMap<>();
+
     public static class Tile {
         public final int x, y, w, h;
+
         Tile(int i, int j) {
             x = i * (TILE_WIDTH + 2);
             y = j * (TILE_WIDTH + 2);
@@ -28,17 +30,19 @@ public class Tiles {
         tileMap.put("floor", new Tile(2, 0));
         tileMap.put("player", new Tile(27, 0));
         tileMap.put("skeleton", new Tile(29, 6));
-        tileMap.put("gate" , new Tile(3,4));
-        tileMap.put("sword" , new Tile(1,30));
-        tileMap.put("key" , new Tile(16,23));
-        tileMap.put("opengate" , new Tile(4,4));
-        tileMap.put("devil" , new Tile(31,2));
-        tileMap.put("health" , new Tile(27,23));
-        tileMap.put("boss" , new Tile(30,6));
-        tileMap.put("skull" , new Tile(18,24));
-        tileMap.put("water" , new Tile(8,5));
-        tileMap.put("tresure" , new Tile(11,24));
-        tileMap.put("potion" , new Tile(16,25));
+        tileMap.put("gate", new Tile(3, 4));
+        tileMap.put("sword", new Tile(1, 30));
+        tileMap.put("key", new Tile(16, 23));
+        tileMap.put("opengate", new Tile(4, 4));
+        tileMap.put("devil", new Tile(31, 2));
+        tileMap.put("health", new Tile(27, 23));
+        tileMap.put("boss", new Tile(30, 6));
+        tileMap.put("skull", new Tile(18, 24));
+        tileMap.put("water", new Tile(8, 5));
+        tileMap.put("tresure", new Tile(11, 24));
+        tileMap.put("potion", new Tile(16, 25));
+        tileMap.put("noPotion", new Tile(16, 26));
+        tileMap.put("bridge", new Tile(8, 15));
     }
 
     public static void drawTile(GraphicsContext context, Drawable d, int x, int y) {

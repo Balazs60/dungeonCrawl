@@ -20,6 +20,8 @@ public class StatusPane {
     private Label keyValueLabel;
     private  Label potionTextLabel;
     private Label potionValueLabel;
+    private Label tresureTextLabel;
+    private Label tresureValueLabel;
 
     private List<Label> inventoryList = new ArrayList<>();
 
@@ -33,6 +35,8 @@ public class StatusPane {
         keyValueLabel = new Label();
         potionTextLabel = new Label("Potion: ");
         potionValueLabel = new Label();
+        tresureTextLabel = new Label("Tresure");
+        tresureValueLabel = new Label();
     }
 
     public BorderPane build() {
@@ -64,4 +68,5 @@ public class StatusPane {
         keyValueLabel.setText(text);
     }
     public  void setPotionValue(String text) {potionValueLabel.setText(text);}
+    public  void setTresureValue(String text) {tresureValueLabel.setText(text);}
 }
