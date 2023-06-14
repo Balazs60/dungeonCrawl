@@ -7,6 +7,10 @@ import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 
 public class GameLogic {
+    public void setMap(GameMap map) {
+        this.map = map;
+    }
+
     private GameMap map;
 
     public GameLogic() {

@@ -41,21 +41,31 @@ public class StatusPane {
 
     public BorderPane build() {
 
-        ui.setPrefWidth(RIGHT_PANEL_WIDTH);
-        ui.setPadding(new Insets(RIGHT_PANEL_PADDING));
+        int row = 0;
 
-        ui.add(healthTextLabel, 0, 0);
-        ui.add(healthValueLabel, 1, 0);
-        ui.add(swordTextLabel, 2, 0);
-        ui.add(swordValueLabel, 3, 0);
-        ui.add(keyTextLabel, 4, 0);
-        ui.add(keyValueLabel, 5, 0);
-        ui.add(potionTextLabel, 6,0);
-        ui.add(potionValueLabel,7,0);
+        ui.add(healthTextLabel, 0, row);
+        ui.add(healthValueLabel, 1, row);
+        row++;
+
+        ui.add(swordTextLabel, 0, row);
+        ui.add(swordValueLabel, 1, row);
+        row++;
+
+        ui.add(keyTextLabel, 0, row);
+        ui.add(keyValueLabel, 1, row);
+        row++;
+
+        ui.add(potionTextLabel, 0, row);
+        ui.add(potionValueLabel, 1, row);
+        row++;
+
+        ui.add(tresureTextLabel, 0, row);
+        ui.add(tresureValueLabel, 1, row);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
         return borderPane;
+
     }
 
     public void setHealthValue(String text) {

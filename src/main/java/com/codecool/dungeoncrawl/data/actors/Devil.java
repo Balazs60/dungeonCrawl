@@ -54,10 +54,6 @@ public class Devil extends Actor {
                     break;
             }
         }
-        System.out.println(cell.getX());
-        System.out.println(cell.getY());
-
-
     }
 
 

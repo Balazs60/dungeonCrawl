@@ -13,15 +13,24 @@ public class Skull extends Actor {
 
    public void moveSkull() {
        if (counter < 8) {
-           cell = movement.moveUp(cell, this);
-           counter++;
+           moveUp();
        } else if (counter >= 8 && counter < 16) {
-           cell = movement.moveDown(cell, this);
-           counter++;
+           moveDown();
        } else {
-           counter = 0; // Reset the counter if it exceeds 16
+           counter = 0;
        }
    }
+
+    private void moveDown() {
+        cell = movement.moveDown(cell, this);
+        counter++;
+    }
+
+    private void moveUp() {
+        cell = movement.moveUp(cell, this);
+        counter++;
+    }
+
     @Override
     public String getTileName() {
         return "skull";
