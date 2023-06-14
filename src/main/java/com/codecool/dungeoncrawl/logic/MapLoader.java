@@ -57,7 +57,7 @@ public class MapLoader {
                             break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
-                            new Devil(cell);
+                            map.setDevil(new Devil(cell));
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);

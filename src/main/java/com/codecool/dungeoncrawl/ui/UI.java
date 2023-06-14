@@ -23,6 +23,7 @@ public class UI {
     private GameLogic logic;
     private Set<KeyHandler> keyHandlers;
 
+
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
         this.canvas = new Canvas(
                 logic.getMapWidth() * Tiles.TILE_WIDTH,
@@ -32,6 +33,16 @@ public class UI {
         this.mainStage = new MainStage(canvas);
         this.keyHandlers = keyHandlers;
     }
+
+    public UI(Canvas canvas, GraphicsContext context, MainStage mainStage, GameLogic logic, Set<KeyHandler> keyHandlers) {
+        this.canvas = canvas;
+        this.context = context;
+        this.mainStage = mainStage;
+        this.logic = logic;
+        this.keyHandlers = keyHandlers;
+    }
+
+
 
     public void setUpPain(Stage primaryStage) {
         Scene scene = mainStage.getScene();
@@ -45,7 +56,9 @@ public class UI {
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
+
         refresh();
+        logic.getMap().update();
     }
 
     public void refresh() {
