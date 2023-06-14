@@ -22,6 +22,10 @@ public class GameMap {
         }
     }
 
+    public void update(){
+        devil.devilMove();
+    }
+
     public Cell getCell(int x, int y) {
         return cells[x][y];
     }
