@@ -5,20 +5,23 @@ import com.codecool.dungeoncrawl.data.CellType;
 
 public class Movement {
 
-    public Cell moveUp(Cell cell, Actor actor){
+    public Cell moveUp(Cell cell, Actor actor) {
         Cell nextCell = cell.getNeighbor(0, -1);
-        if (actor.health>0){
-        if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE &&
-                nextCell.getType() != CellType.WATER){
-        cell.setActor(null);
-        nextCell.setActor(actor);
-        return nextCell;}
-        return cell;}
-        return null;
+        if (actor.health > 0) {
+            if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE &&
+                    nextCell.getType() != CellType.WATER) {
+                cell.setActor(null);
+                nextCell.setActor(actor);
+                return nextCell;
+            }
+            return cell;
+        }
+        return cell;
     }
-    public Cell moveDown(Cell cell, Actor actor){
+
+    public Cell moveDown(Cell cell, Actor actor) {
         Cell nextCell = cell.getNeighbor(0, 1);
-        if(actor.health>0) {
+        if (actor.health > 0) {
             if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE &&
                     nextCell.getType() != CellType.WATER) {
                 cell.setActor(null);
@@ -28,12 +31,12 @@ public class Movement {
             }
             return cell;
         }
-        return null;
+        return cell;
     }
 
-    public Cell moveLeft(Cell cell, Actor actor){
+    public Cell moveLeft(Cell cell, Actor actor) {
         Cell nextCell = cell.getNeighbor(-1, 0);
-        if (actor.health>0) {
+        if (actor.health > 0) {
             if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE &&
                     nextCell.getType() != CellType.WATER) {
 
@@ -43,7 +46,7 @@ public class Movement {
             }
             return cell;
         }
-        return null;
+        return cell;
 
     }
 
@@ -51,9 +54,8 @@ public class Movement {
         Cell nextCell = cell.getNeighbor(1, 0);
         if (actor.health > 0) {
 
-
-            if (nextCell.getType() != CellType.WALL
-                    && nextCell.getActor() == null && nextCell.getType() != CellType.GATE && nextCell.getType() != CellType.WATER) {
+            if (nextCell.getType() != CellType.WALL &&
+             nextCell.getType() != CellType.GATE && nextCell.getType() != CellType.WATER) {
 
                 cell.setActor(null);
                 nextCell.setActor(actor);
@@ -61,6 +63,6 @@ public class Movement {
             }
             return cell;
         }
-        return null;
+        return cell;
     }
 }
