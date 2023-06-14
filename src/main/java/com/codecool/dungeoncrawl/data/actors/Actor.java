@@ -15,7 +15,7 @@ public abstract class Actor implements Drawable {
     private int key = 0;
     private int potion = 0;
     private int tresure = 0;
-    public Skeleton skeleton;
+
     private boolean bossIsAlive = true;
 
 
@@ -28,67 +28,93 @@ public abstract class Actor implements Drawable {
 
 
     public void move(int dx, int dy) {
-
-
         if (isAlive()) {
             Cell nextCell = cell.getNeighbor(dx, dy);
-            // System.out.println(nextCell.getActor());
             setGate(nextCell);
             wallCheck(nextCell);
             setBridge(nextCell);
             checkMonster(nextCell);
-
-
         }
-
-
     }
 
-    private boolean isAlive() {
-        return health > 0;
-    }
+
 
     private void attack(Cell nextCell) {
-
-
-        while (health >= 0 || nextCell.getActor().getHealth() >= 0) {
-            nextCell.getActor().setHealth(nextCell.getActor().getHealth() - attack);
-            System.out.println("enemy hp " + nextCell.getActor().getHealth());
-            System.out.println("enemy attack " + nextCell.getActor().getAttack());
+        Actor enemy=nextCell.getActor();
+        while (health >= 0 || enemy.getHealth() >= 0) {
+            playerAttack(enemy);
             if (health <= 0) {
-                cell.setActor(null);
+                killPlayer();
                 break;
             }
-            cell.getActor().setHealth(cell.getActor().getHealth() - nextCell.getActor().getAttack());
-            System.out.println("my hp " + health);
-
-            if (nextCell.getActor().getHealth() <= 0) {
-                nextCell.setActor(null);
+            enemyAttack(nextCell);
+            if (enemy.getHealth()<= 0) {
+                killEnemy(nextCell);
                 break;
             }
         }
+    }
+
+    private static void killEnemy(Cell nextCell) {
+        nextCell.setActor(null);
+    }
+
+    private void killPlayer() {
+        cell.setActor(null);
+
+    }
+
+    private void enemyAttack(Cell nextCell) {
+        cell.getActor().setHealth(cell.getActor().getHealth() - nextCell.getActor().getAttack());
+    }
+
+    private void playerAttack(Actor enemy) {
+        enemy.setHealth(enemy.getHealth() - attack);
+        System.out.println("enemy hp after my attack"+enemy.getHealth());
     }
 
 
     protected void checkMonster(Cell nextCell) {
         if (nextCell.getActor() != null) {
             String monsterheck = nextCell.getActor().toString();
-
-            if (monsterheck.contains("Boss")) {
-                attack(nextCell);
-                nextCell.setActor(null);
-                bossIsAlive = false;
-                System.out.println(bossIsAlive);
+            if (isBoss(monsterheck)) {
+                bossFight(nextCell);
             }
-
-            if (monsterheck.contains("Skeleton") || monsterheck.contains("Devil")) {
-
-                attack(nextCell);
-                nextCell.setActor(null);
+            if (isSkeleton(monsterheck) || isDevil(monsterheck) || isSkull(monsterheck)) {
+                monsterFight(nextCell);
             }
         }
-
     }
+
+    private boolean isSkull(String monsterheck) {
+        return monsterheck.contains("Skull");
+    }
+
+    private void monsterFight(Cell nextCell) {
+        attack(nextCell);
+        nextCell.setActor(null);
+    }
+
+    private static boolean isDevil(String monsterheck) {
+        return monsterheck.contains("Devil");
+    }
+
+    private static boolean isSkeleton(String monsterheck) {
+        return monsterheck.contains("Skeleton");
+    }
+
+    private void bossFight(Cell nextCell) {
+        monsterFight(nextCell);
+        bossIsAlive = false;
+    }
+
+
+    private static boolean isBoss(String monsterheck) {
+        return monsterheck.contains("Boss");
+    } private boolean isAlive() {
+        return health > 0;
+    }
+
 
     private void setGate(Cell nextCell) {
         if (nextCell.getType().equals(CellType.GATE) && key > 0) {
