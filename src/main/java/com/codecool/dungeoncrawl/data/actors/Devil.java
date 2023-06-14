@@ -71,7 +71,7 @@ public class Devil extends Actor {
 
 
 
-    public void moveDevil() {
+    public void moveDvil() {
         devilMove();
     }
 
