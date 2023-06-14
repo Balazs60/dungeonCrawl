@@ -69,7 +69,7 @@ public abstract class Actor implements Drawable {
         if (nextCell.getActor()!=null) {
             String monsterheck = nextCell.getActor().toString();
 
-            if (monsterheck.contains("Skeleton") || monsterheck.contains("Devil")) {
+            if (monsterheck.contains("Skeleton") || monsterheck.contains("Devil") || monsterheck.contains("Boss")) {
 
                 attack( nextCell);
                 nextCell.setActor(null);

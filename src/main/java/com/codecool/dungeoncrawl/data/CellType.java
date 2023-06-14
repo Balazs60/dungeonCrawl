@@ -10,7 +10,8 @@ public enum CellType {
     DEVIL("devil"),
 
     SWORD("sword"),
-    Health("health");
+    Health("health"),
+    Boss("boss");
 
     private final String tileName;
 
