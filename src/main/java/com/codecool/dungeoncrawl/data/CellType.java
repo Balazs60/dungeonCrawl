@@ -8,6 +8,7 @@ public enum CellType {
     WALL("wall"),
     TRESURE("tresure"),
     POTION("potion"),
+    NOPOTION("noPotion"),
     OPENGATE("opengate"),
     DEVIL("devil"),
     SKULL("skull"),
@@ -16,7 +17,8 @@ public enum CellType {
 
     SWORD("sword"),
     Health("health"),
-    Boss("boss");
+    Boss("boss"),
+    Bridge("bridge");
 
     private final String tileName;
 

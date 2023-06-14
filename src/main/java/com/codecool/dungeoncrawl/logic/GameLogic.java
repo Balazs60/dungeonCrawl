@@ -40,6 +40,12 @@ public class GameLogic {
     public String getPlayerKey() {
         return Integer.toString(map.getPlayer().getKey());
     }
+    public String getPlayerTresure() {
+        return Integer.toString(map.getPlayer().getTresure());
+    }
+    public String getPlayerPotion() {
+        return Integer.toString(map.getPlayer().getPotion());
+    }
 
 
     public GameMap getMap() {

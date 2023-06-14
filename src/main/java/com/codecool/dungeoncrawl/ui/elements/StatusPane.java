@@ -18,6 +18,11 @@ public class StatusPane {
     private Label swordValueLabel;
     private Label keyTextLabel;
     private Label keyValueLabel;
+    private  Label potionTextLabel;
+    private Label potionValueLabel;
+    private Label tresureTextLabel;
+    private Label tresureValueLabel;
+
     private List<Label> inventoryList = new ArrayList<>();
 
     public StatusPane() {
@@ -28,6 +33,10 @@ public class StatusPane {
         swordValueLabel = new Label();
         keyTextLabel = new Label("Key: ");
         keyValueLabel = new Label();
+        potionTextLabel = new Label("Potion: ");
+        potionValueLabel = new Label();
+        tresureTextLabel = new Label("Tresure");
+        tresureValueLabel = new Label();
     }
 
     public BorderPane build() {
@@ -41,6 +50,8 @@ public class StatusPane {
         ui.add(swordValueLabel, 3, 0);
         ui.add(keyTextLabel, 4, 0);
         ui.add(keyValueLabel, 5, 0);
+        ui.add(potionTextLabel, 6,0);
+        ui.add(potionValueLabel,7,0);
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
@@ -56,4 +67,6 @@ public class StatusPane {
     public  void  setKeyValue(String text){
         keyValueLabel.setText(text);
     }
+    public  void setPotionValue(String text) {potionValueLabel.setText(text);}
+    public  void setTresureValue(String text) {tresureValueLabel.setText(text);}
 }
