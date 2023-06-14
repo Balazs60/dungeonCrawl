@@ -70,7 +70,7 @@ public abstract class Actor implements Drawable {
     }
 
 
-    private void checkMonster(Cell nextCell) {
+    protected void checkMonster(Cell nextCell) {
         if (nextCell.getActor() != null) {
             String monsterheck = nextCell.getActor().toString();
 

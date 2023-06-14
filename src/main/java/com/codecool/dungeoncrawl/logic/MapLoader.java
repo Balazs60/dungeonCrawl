@@ -3,10 +3,7 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
-import com.codecool.dungeoncrawl.data.actors.Boss;
-import com.codecool.dungeoncrawl.data.actors.Devil;
-import com.codecool.dungeoncrawl.data.actors.Player;
-import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.actors.*;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -61,7 +58,7 @@ public class MapLoader {
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            new Boss(cell);
+                            map.setBoss(new Boss(cell));
                             break;
                         case 'o':
                             cell.setType(CellType.OPENGATE);
@@ -70,7 +67,8 @@ public class MapLoader {
                             cell.setType(CellType.Bridge);
                             break;
                         case 'q':
-                            cell.setType(CellType.SKULL);
+                            cell.setType(CellType.FLOOR);
+                            map.setSkull(new Skull(cell));
                             break;
                         case 'v':
                             cell.setType(CellType.WATER);
