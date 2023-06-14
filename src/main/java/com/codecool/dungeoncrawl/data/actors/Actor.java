@@ -89,6 +89,7 @@ public abstract class Actor implements Drawable {
         if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE) {
 
             collectIventory(nextCell);
+            pickUpHealth(nextCell);
 
             cell.setActor(null);
             nextCell.setActor(this);
@@ -118,6 +119,19 @@ public abstract class Actor implements Drawable {
             cell.setType(CellType.FLOOR);
 
 
+        }
+    }
+
+    private void pickUpHealth(Cell nextCell){
+        if(nextCell.getType().equals(CellType.Health)){
+            cell.setType(CellType.FLOOR);
+            health+= 35;
+            cell.setActor(null);
+            System.out.println(cell.getType());
+            nextCell.setActor(this);
+            cell = nextCell;
+            System.out.println(cell.getType());
+            cell.setType(CellType.FLOOR);
         }
     }
 

@@ -9,7 +9,8 @@ public enum CellType {
     OPENGATE("opengate"),
     DEVIL("devil"),
 
-    SWORD("sword");
+    SWORD("sword"),
+    Health("health");
 
     private final String tileName;
 

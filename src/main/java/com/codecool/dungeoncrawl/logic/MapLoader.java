@@ -42,6 +42,9 @@ public class MapLoader {
                         case 'g':
                             cell.setType(CellType.GATE);
                             break;
+                        case 'h':
+                            cell.setType(CellType.Health);
+                            break;
                         case 'd':
                             cell.setType(CellType.DEVIL);
                             new Devil(cell);
