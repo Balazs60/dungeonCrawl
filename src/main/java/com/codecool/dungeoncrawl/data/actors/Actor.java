@@ -39,20 +39,32 @@ public abstract class Actor implements Drawable {
 
 
 
-    private void attack(Cell nextCell) {
+    private void battle(Cell nextCell) {
         Actor enemy=nextCell.getActor();
-        while (health >= 0 || enemy.getHealth() >= 0) {
+        while (areFightersAlive(enemy)) {
             playerAttack(enemy);
-            if (health <= 0) {
+            if (isPlayerAlive()) {
                 killPlayer();
                 break;
             }
             enemyAttack(nextCell);
-            if (enemy.getHealth()<= 0) {
+            if (isEnemyAlive(enemy)) {
                 killEnemy(nextCell);
                 break;
             }
         }
+    }
+
+    private boolean isPlayerAlive() {
+        return health <= 0;
+    }
+
+    private static boolean isEnemyAlive(Actor enemy) {
+        return enemy.getHealth() <= 0;
+    }
+
+    private boolean areFightersAlive(Actor enemy) {
+        return health >= 0 || enemy.getHealth() >= 0;
     }
 
     private static void killEnemy(Cell nextCell) {
@@ -91,7 +103,7 @@ public abstract class Actor implements Drawable {
     }
 
     private void monsterFight(Cell nextCell) {
-        attack(nextCell);
+        battle(nextCell);
         nextCell.setActor(null);
     }
 
