@@ -24,18 +24,9 @@ public class Devil extends Actor {
 
     }
 
-    public void startMoving(){
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                devilMove();
-            }
-        }, 1000, 1000);
-    }
 
-    public void stopMoving(){
-        timer.cancel();
-    }
+
+
 
 
 
@@ -44,23 +35,24 @@ public class Devil extends Actor {
     public void devilMove() {
 
         int randomNumber = random.nextInt(4);
+        if(cell!=null) {
+            switch (randomNumber) {
+                case 0:
+                    cell = movement.moveUp(cell, this);
+                    break;
 
-        switch (randomNumber){
-            case 0:
-                cell = movement.moveUp(cell, this);
-                break;
+                case 1:
+                    cell = movement.moveDown(cell, this);
+                    break;
 
-            case 1:
-                cell = movement.moveDown(cell, this);
-                break;
+                case 2:
+                    cell = movement.moveLeft(cell, this);
+                    break;
 
-            case 2:
-                cell = movement.moveLeft(cell, this);
-                break;
-
-            case 3:
-                cell = movement.moveRight(cell, this);
-                break;
+                case 3:
+                    cell = movement.moveRight(cell, this);
+                    break;
+            }
         }
         System.out.println(cell.getX());
         System.out.println(cell.getY());
