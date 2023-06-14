@@ -15,6 +15,8 @@ public abstract class Actor implements Drawable {
     private int key = 0;
     public Skeleton skeleton;
 
+
+
     public Actor(Cell cell, int health, int attack) {
         this.cell = cell;
         this.cell.setActor(this);
@@ -22,15 +24,20 @@ public abstract class Actor implements Drawable {
         this.attack = attack;
     }
 
+
     public void move(int dx, int dy) {
+
 
 
         if (isAlive()){
             Cell nextCell = cell.getNeighbor(dx, dy);
-            System.out.println(nextCell.getActor());
+           // System.out.println(nextCell.getActor());
             setGate(nextCell);
             wallCheck(nextCell);
             checkMonster(nextCell);
+
+
+
 
 
         }
@@ -85,7 +92,7 @@ public abstract class Actor implements Drawable {
     }
 
 
-    private void wallCheck(Cell nextCell) {
+    protected void wallCheck(Cell nextCell) {
         if (nextCell.getType() != CellType.WALL && nextCell.getActor() == null && nextCell.getType() != CellType.GATE) {
 
             collectIventory(nextCell);
@@ -94,6 +101,7 @@ public abstract class Actor implements Drawable {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
+
         }
     }
 
@@ -169,5 +177,6 @@ public abstract class Actor implements Drawable {
     public void setAttack(int attack) {
         this.attack = attack;
     }
+
 
 }

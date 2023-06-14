@@ -6,8 +6,13 @@ public enum CellType {
     EMPTY("empty"),
     FLOOR("floor"),
     WALL("wall"),
+    TRESURE("tresure"),
+    POTION("potion"),
     OPENGATE("opengate"),
     DEVIL("devil"),
+    SKULL("skull"),
+
+    WATER("water"),
 
     SWORD("sword"),
     Health("health"),

@@ -46,6 +46,12 @@ public class MapLoader {
                         case 'h':
                             cell.setType(CellType.Health);
                             break;
+                        case 't':
+                            cell.setType(CellType.TRESURE);
+                            break;
+                        case 'p':
+                            cell.setType(CellType.POTION);
+                            break;
                         case 'd':
                             cell.setType(CellType.FLOOR);
                             new Devil(cell);
@@ -56,6 +62,12 @@ public class MapLoader {
                             break;
                         case 'o':
                             cell.setType(CellType.OPENGATE);
+                            break;
+                        case 'q':
+                            cell.setType(CellType.SKULL);
+                            break;
+                        case 'v':
+                            cell.setType(CellType.WATER);
                             break;
                         case '.':
                             cell.setType(CellType.FLOOR);

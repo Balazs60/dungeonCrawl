@@ -26,9 +26,9 @@ public class Devil extends Actor {
         }
     }
 
-
-
-
+    public void moveDevil() {
+        devilMove();
+    }
 
     @Override
     public String getTileName() {
