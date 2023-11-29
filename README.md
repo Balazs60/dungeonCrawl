@@ -16,7 +16,7 @@ Java
 ### Installation
 
 #### Clone the repository:
-git clone https://github.com/your-username/dungeon-crawl.git
+git clone https://github.com/Balazs60/dungeonCrawl
 
 #### Navigate to the project directory:
 cd dungeonCrawl/src/main/java/com/codecool/dungeoncrawl
