@@ -12,23 +12,19 @@ Canvas
 
 ### Prerequisites
 Java  
+Maven (optional, Maven wrapper included)  
+
 
 ### Installation
 
 #### Clone the repository:
 git clone https://github.com/Balazs60/dungeonCrawl
 
-#### Navigate to the project directory:
-cd dungeonCrawl/src/main/java/com/codecool/dungeoncrawl
-
 #### Compile the game:
-javac App.java  
-
-### Executing Program
+./mvnw clean package  
 
 #### Run the compiled program:
-
-java App
+java -jar target/dungeon-crawl-1.0-SNAPSHOT.jar  
 
 ## Authors
 
