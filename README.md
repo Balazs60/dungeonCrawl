@@ -11,7 +11,7 @@ Canvas
 ## Getting Started
 
 ### Prerequisites
-Java  
+Java JDK  
 Maven (optional, Maven wrapper included)  
 
 
