@@ -29,7 +29,7 @@ java -jar target/dungeon-crawl-1.0-SNAPSHOT.jar
 ## Authors
 
 Borisz Bisits  
-Viktor Pikátsi  
+Viktor Pintácsi-Farkas   
 Balázs Füredi
 
 ## Contact
